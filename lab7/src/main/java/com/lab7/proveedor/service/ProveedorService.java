@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.lab7.proveedor.dto.request.ProveedorRequest;
 import com.lab7.proveedor.dto.response.ProveedorResponse;
 import com.lab7.proveedor.entity.Categoria;
 import com.lab7.proveedor.entity.Estado;
@@ -23,11 +24,29 @@ public class ProveedorService{
         return proveedores;
     }
 
-    public ProveedorResponse getById(Long id){
-        return proveedores.stream().filter(prov -> prov.getId().equals(id)).collect(Collectors.toList()).get(0);
+    public ProveedorResponse getProveedorById(Long id){
+        return proveedores.stream().filter(proveedor -> proveedor.getId().equals(id)).findFirst().orElse(null);
     }
 
     public List<ProveedorResponse> obtenerProveedorPorCategoria(Categoria categoria){
         return proveedores.stream().filter(prov -> prov.getCategoria().equals(categoria)).collect(Collectors.toList());
+    }
+
+    public ProveedorResponse crearProveedor(ProveedorRequest proveedorbody){
+        if(proveedorbody.nombre()==null || proveedorbody.apellido()==null
+            ||proveedorbody.correo()==null || proveedorbody.nombre().isBlank()
+            ||proveedorbody.apellido().isBlank() || proveedorbody.correo().isBlank()){
+                return null;
+        }
+
+        ProveedorResponse nuevo_proveedor = new ProveedorResponse(
+            (long)(proveedores.size()+1), 
+            proveedorbody.nombre(), 
+            proveedorbody.apellido(), 
+            proveedorbody.correo(), 
+            proveedorbody.categoria(), 
+            proveedorbody.estado());
+        proveedores.add(nuevo_proveedor);
+        return nuevo_proveedor;
     }
 }

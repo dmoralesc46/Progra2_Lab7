@@ -1,7 +1,7 @@
 package com.lab7.proveedor.dto.request;
 
-import com.lab7.profesor.entity.Estado;
 import com.lab7.proveedor.entity.Categoria;
+import com.lab7.proveedor.entity.Estado;
 
 public record ProveedorRequest(
     String nombre, 

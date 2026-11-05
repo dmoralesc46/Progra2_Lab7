@@ -4,6 +4,8 @@ public enum Especialidad {
         MATEMATICA,
         CIENCIAS_SOCIALES,
         FISICA,
-        PROGRAMACION 
-
+        PROGRAMACION,
+        INFORMATICA,
+        QUIMICA,
+        
 }

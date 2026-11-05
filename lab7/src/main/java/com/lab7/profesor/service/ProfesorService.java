@@ -27,15 +27,7 @@ public class ProfesorService {
     }
 
     public ProfesorResponse getProfesorById(Long id){
-        for (int i = 0; i <profesores.size(); i++) {
-            ProfesorResponse profesor = profesores.get(i);
-            if(profesor.getId().equals(id)){
-                return profesor;
-            }
-        }
-
-        //aca se marca el error
-        return null;
+        return profesores.stream().filter(profesor -> profesor.getId().equals(id)).findFirst().orElse(null);
     }
 
     public List<ProfesorResponse> getProfesorByEspecialidad(Especialidad especialidad){

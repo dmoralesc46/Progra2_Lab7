@@ -72,4 +72,6 @@ public class ProfesorController {
         }
         return ResponseEntity.ok(nuevo);
     } 
+
+    
 }
