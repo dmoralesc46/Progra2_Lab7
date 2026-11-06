@@ -35,8 +35,8 @@ public class EmpleadoService {
 
     public EmpleadoResponse crearEmpleado(EmpleadoRequest empleadobody){
         if(empleadobody.nombre()==null || empleadobody.apellido()==null || empleadobody.correo()==null
-            || empleadobody.nombre().isBlank() || empleadobody.apellido().isBlank()){
-
+            || empleadobody.nombre().isBlank() || empleadobody.apellido().isBlank()
+            || empleadobody.correo().isBlank() || empleadobody.especialidad()==null || empleadobody.estado()==null){
                 return null;
         }
 

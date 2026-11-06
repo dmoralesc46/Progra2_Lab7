@@ -37,13 +37,13 @@ public class ProfesorService {
     public ProfesorResponse crearProfesor(ProfesorRequest profesorbody){
         //se verifica que los campos no vengan vacios
         if(profesorbody.nombre()==null || profesorbody.apellido()==null || profesorbody.correo()==null
-            || profesorbody.nombre().isBlank() || profesorbody.apellido().isBlank()){
+            || profesorbody.nombre().isBlank() || profesorbody.apellido().isBlank()
+            || profesorbody.correo().isBlank() || profesorbody.especialidad()==null || profesorbody.estado()==null){
 
                 return null;
         }
-
         //se verifica que el correo venga en el formato correcto
-        Pattern patron = Pattern.compile("/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$/");
+        Pattern patron = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
         Matcher matcher = patron.matcher(profesorbody.correo());
         if(!matcher.find()){
             return null;

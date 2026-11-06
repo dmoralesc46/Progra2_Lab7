@@ -26,10 +26,12 @@ public class EmpleadoController {
         this.empleadoService = empleadoService;
     }
 
+
     @GetMapping
     public ResponseEntity<?> getAll(){
         return ResponseEntity.ok(empleadoService.getAll());
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id){
@@ -46,10 +48,18 @@ public class EmpleadoController {
         return ResponseEntity.ok(result);
     }
 
+
     @GetMapping("/especialidad/{especialidad}")
     public ResponseEntity<?> filterByEspecialidad(@PathVariable Especialidad especialidad){
         List<EmpleadoResponse> filtered_Empleados = empleadoService.filterByEspecialidad(especialidad);
-
+        if(filtered_Empleados.isEmpty()){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(
+                Map.of(
+                    "mensaje","No existe ningun empleado con la especialidad '"+ especialidad.name() +"'.",
+                    "codigo", 409
+                )
+            );
+        }
         return ResponseEntity.ok(filtered_Empleados);        
     }
 

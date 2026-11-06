@@ -35,7 +35,8 @@ public class ProveedorService{
     public ProveedorResponse crearProveedor(ProveedorRequest proveedorbody){
         if(proveedorbody.nombre()==null || proveedorbody.apellido()==null
             ||proveedorbody.correo()==null || proveedorbody.nombre().isBlank()
-            ||proveedorbody.apellido().isBlank() || proveedorbody.correo().isBlank()){
+            ||proveedorbody.apellido().isBlank() || proveedorbody.correo().isBlank()
+            || proveedorbody.categoria()==null || proveedorbody.estado()==null){
                 return null;
         }
 
